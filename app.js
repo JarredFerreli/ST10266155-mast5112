@@ -1,6 +1,6 @@
 import React from "react";
 
-
+//importing all my screens
 import Home from './screens/Home';
 import NewBook from "./screens/NewBook";
 import History from "./screens/History";
@@ -19,13 +19,37 @@ const Tab = createBottomTabNavigator()
 
 const App = ()=>{
 
+    //useState's
     const [books, setBooks] = useState([]);
     const [lastBook, setLastBook] = useState(null);
-  
+    const [genreCounts, setGenreCounts] = useState({
+        Horror: 0,
+        Romance: 0,
+        Mystery: 0,
+        Thriller: 0,
+        Fantasy: 0,
+        'Non-Fiction': 0,
+        Others: 0,
+    });
+    
+    //handles and stores the new books added
     const addBook = (title, author, selectedGenres, numPages) => {
       const newBook = { title, author, selectedGenres, numPages };
       setBooks(prevBooks => [newBook, ...prevBooks]);
       setLastBook(newBook);
+      updateGenreCounts(selectedGenres);
+    };
+    
+    //handles and stores the tally array for my genre counter.
+    const updateGenreCounts = (genres) => {
+        const newGenreCounts = { ...genreCounts };
+        for (let i = 0; i < genres.length; i++) {
+            const genre = genres[i];
+            if (newGenreCounts[genre] !== undefined) {
+                newGenreCounts[genre]++;
+            }
+        }
+        setGenreCounts(newGenreCounts);
     };
 
     return(
@@ -81,7 +105,7 @@ const App = ()=>{
                         )
                     }}>
 
-                    {() => <NewBook setBooks={setBooks} setLastBook={setLastBook} />}
+                    {() => <NewBook setBooks={setBooks} setLastBook={setLastBook} updateGenreCounts={updateGenreCounts} />}
 
                 </Tab.Screen>
 
@@ -106,7 +130,7 @@ const App = ()=>{
 
                 </Tab.Screen>
 
-                <Tab.Screen name="Genre" component={TotalGenres}
+                <Tab.Screen name="Genre"
                     options={{
                         tabBarLabelStyle: {
                             fontSize: 15,
@@ -122,6 +146,9 @@ const App = ()=>{
                             </MaterialIcons>
                         )
                     }}>
+
+                    {() => <TotalGenres genreCounts={genreCounts} />}
+                    
                 </Tab.Screen>
 
             </Tab.Navigator>

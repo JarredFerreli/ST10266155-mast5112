@@ -68,6 +68,73 @@ const Style = StyleSheet.create({
         marginLeft: 210,
         marginRight: 100,
     },
+    historyDisplay: {
+        color: 'black',
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginTop: 10,
+        marginLeft: 50,
+        marginRight: 50
+    },
+    historyText: {
+        color: 'black',
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginTop: 25,
+        marginLeft: 50,
+        marginRight: 50
+    },
+    historyBookTitle: {
+        color: 'black',
+        fontSize: 15,
+        marginTop: -20,
+        marginLeft: 92,
+        marginRight: 50
+    },
+    historyBookAuthor: {
+        color: 'black',
+        fontSize: 15,
+        marginTop: -20,
+        marginLeft: 106,
+        marginRight: 50
+    },
+    historyBookGenre: {
+        color: 'black',
+        fontSize: 15,
+        marginTop: -20,
+        marginLeft: 100,
+        marginRight: 50
+    },
+    historyBookNumber: {
+        color: 'black',
+        fontSize: 15,
+        marginTop: -20,
+        marginLeft: 176,
+        marginRight: 50
+    },
+    ImageHome: {
+        marginTop: 10,
+        width: 150, 
+        height: 150,
+        alignSelf: 'center'
+    },
+    ImageNewBooks: {
+        marginTop: 30,
+        width: 200, 
+        height: 200,
+        alignSelf: 'center'
+    },
+    ImageHistory: {
+        width: 200, 
+        height: 200,
+        alignSelf: 'center'
+    },
+    ImageGenres: {
+        marginTop: 10,
+        width: 200, 
+        height: 200,
+        alignSelf: 'center'
+    }
 });
 
 export default Style;

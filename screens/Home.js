@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Style from '../Styles/Style';
-import { SafeAreaView, View, Text } from "react-native";
+import { SafeAreaView, View, Text, Image, ScrollView } from "react-native";
 
 const Home = ({ books }) => {
     const [totalPagesRead, setTotalPagesRead] = useState(0);
     const [lastBook, setLastBook] = useState(null);
     const [averagePages, setAveragePages] = useState(0);
 
+    //Carries over the input from NewBook.js so it can display the last read book.
     useEffect(() => {
         if (books && books.length > 0) {
         let total = 0;
@@ -33,57 +34,66 @@ const Home = ({ books }) => {
 
     return (
         <SafeAreaView style={Style.containerColour}>
-            <View>
-                <Text style={Style.HeaderText}>Last book read</Text>
-            </View>
-            <View>
-                <Text style={Style.Text}>Title:</Text>
-            </View>
-            {lastBook && (
+            <ScrollView>
                 <View>
-                    <Text style={Style.TextUnder}>{lastBook.title}</Text>
+                    <Text style={Style.HeaderText}>Last book read</Text>
                 </View>
-            )}
-            <View>
-                <Text style={Style.Text}>Author:</Text>
-            </View>
-            {lastBook && (
                 <View>
-                    <Text style={Style.TextUnder}>{lastBook.author}</Text>
+                    <Text style={Style.Text}>Title:</Text>
                 </View>
-            )}
-            <View>
-                <Text style={Style.Text}>Genre:</Text>
-            </View>
-            {lastBook && (
+                {lastBook && (
+                    <View>
+                        <Text style={Style.TextUnder}>{lastBook.title}</Text>
+                    </View>
+                )}
                 <View>
-                    <Text style={Style.TextUnder}>{lastBook.selectedGenres.join(', ')}</Text>
+                    <Text style={Style.Text}>Author:</Text>
                 </View>
-            )}
-            <View>
-                <Text style={Style.Text}>Number of pages:</Text>
-            </View>
-            {lastBook && (
+                {lastBook && (
+                    <View>
+                        <Text style={Style.TextUnder}>{lastBook.author}</Text>
+                    </View>
+                )}
                 <View>
-                    <Text style={Style.TextUnder}>{lastBook.numPages}</Text>
+                    <Text style={Style.Text}>Genre:</Text>
                 </View>
-            )}
+                {lastBook && (
+                    <View>
+                        <Text style={Style.TextUnder}>{lastBook.selectedGenres.join(', ')}</Text>
+                    </View>
+                )}
+                <View>
+                    <Text style={Style.Text}>Number of pages:</Text>
+                </View>
+                {lastBook && (
+                    <View>
+                        <Text style={Style.TextUnder}>{lastBook.numPages}</Text>
+                    </View>
+                )}
 
-            <View>
-                <Text style={Style.HeaderText}>Total pages read</Text>
-            </View>
-            <View>
-                <Text style={Style.Text}>Pages:</Text>
-                <Text style={Style.TextUnder}>{totalPagesRead}</Text>
-            </View>
+                <View>
+                    <Text style={Style.HeaderText}>Total pages read</Text>
+                </View>
+                <View>
+                    <Text style={Style.Text}>Pages:</Text>
+                    <Text style={Style.TextUnder}>{totalPagesRead}</Text>
+                </View>
 
-            <View>
-                <Text style={Style.HeaderText}>Average pages read per book</Text>
-            </View>
-            <View>
-                <Text style={Style.Text}>Pages:</Text>
-                <Text style={Style.TextUnder}>{averagePages}</Text>
-            </View>
+                <View>
+                    <Text style={Style.HeaderText}>Average pages read per book</Text>
+                </View>
+                <View>
+                    <Text style={Style.Text}>Pages:</Text>
+                    <Text style={Style.TextUnder}>{averagePages}</Text>
+                </View>
+
+                <View>
+                    <Image 
+                        style = {Style.ImageHome}
+                        source = {require('../Images/cuteLittleWorm.png')} 
+                    />
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };
